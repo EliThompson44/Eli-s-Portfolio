@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Elias Thompson | Data Analytics + AI Portfolio</title>
+  <style>
+    :root{
+      --bg:#0b1220;         /* deep navy */
+      --panel:#101a33;      /* navy panel */
+      --text:#e7ecff;       /* near-white */
+      --muted:#aab6e6;      /* muted lavender */
+      --accent:#55d6be;     /* sporty teal */
+      --accent2:#ffcc66;    /* highlight gold */
+      --stroke:rgba(255,255,255,0.12);
+      --shadow: 0 18px 45px rgba(0,0,0,0.35);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(900px 500px at 20% 0%, rgba(85,214,190,0.20), transparent 55%),
+                  radial-gradient(900px 500px at 80% 10%, rgba(255,204,102,0.15), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.45;
+    }
+    a{color:inherit; text-decoration:none}
+    .container{max-width:1100px; margin:0 auto; padding:28px 18px 70px;}
+    .nav{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(11,18,32,0.55);
+      border-bottom: 1px solid var(--stroke);
+    }
+    .nav-inner{
+      max-width:1100px; margin:0 auto; padding:12px 18px;
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+    }
+    .brand{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:0.2px;}
+    .badge{
+      width:34px; height:34px; border-radius:10px;
+      background: linear-gradient(135deg, var(--accent), rgba(85,214,190,0.2));
+      display:grid; place-items:center;
+      box-shadow: 0 8px 24px rgba(85,214,190,0.20);
+      border: 1px solid rgba(255,255,255,0.08);
+      font-weight:900;
+    }
+    .nav-links{display:flex; gap:12px; flex-wrap:wrap; justify-content:flex-end;}
+    .pill{
+      padding:8px 12px; border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(16,26,51,0.55);
+      color:var(--muted);
+      font-weight:650;
+      transition: transform .15s ease, border-color .15s ease, color .15s ease;
+    }
+    .pill:hover{transform:translateY(-1px); border-color: rgba(85,214,190,0.55); color:var(--text);}
+    .hero{
+      margin-top:24px;
+      display:grid; grid-template-columns: 1.2fr 0.8fr; gap:18px;
+    }
+    @media (max-width: 900px){ .hero{grid-template-columns:1fr;} }
+    .card{
+      background: linear-gradient(180deg, rgba(16,26,51,0.90), rgba(16,26,51,0.55));
+      border:1px solid var(--stroke);
+      border-radius: var(--radius);
+      padding:18px;
+      box-shadow: var(--shadow);
+    }
+    .headline{
+      font-size: 40px; line-height:1.05; margin:0 0 10px 0; font-weight:900;
+      letter-spacing:-0.8px;
+    }
+    .sub{
+      margin:0 0 14px 0; color: var(--muted); font-size: 16px;
+    }
+    .chips{display:flex; flex-wrap:wrap; gap:10px; margin-top:10px}
+    .chip{
+      padding:7px 10px; border-radius:999px;
+      border:1px solid rgba(255,255,255,0.10);
+      background: rgba(11,18,32,0.5);
+      color: var(--text);
+      font-weight:700; font-size:13px;
+    }
+    .cta-row{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
+    .btn{
+      display:inline-flex; align-items:center; gap:9px;
+      padding:10px 12px; border-radius:12px;
+      border:1px solid var(--stroke);
+      background: rgba(11,18,32,0.45);
+      font-weight:800;
+      transition: transform .15s ease, border-color .15s ease;
+    }
+    .btn:hover{transform:translateY(-1px); border-color: rgba(255,204,102,0.60);}
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(85,214,190,0.95), rgba(85,214,190,0.55));
+      color:#071019;
+      border-color: rgba(85,214,190,0.55);
+    }
+    .kpis{display:grid; grid-template-columns: repeat(3,1fr); gap:12px; margin-top:12px}
+    @media (max-width: 520px){ .kpis{grid-template-columns:1fr;} }
+    .kpi{
+      padding:12px; border-radius:16px;
+      border:1px solid rgba(255,255,255,0.10);
+      background: rgba(11,18,32,0.35);
+    }
+    .kpi .label{color:var(--muted); font-weight:750; font-size:12px;}
+    .kpi .value{font-size:20px; font-weight:950; margin-top:3px;}
+    .grid{
+      margin-top:18px;
+      display:grid; grid-template-columns: repeat(12, 1fr); gap:14px;
+    }
+    .span-7{grid-column: span 7;}
+    .span-5{grid-column: span 5;}
+    .span-12{grid-column: span 12;}
+    @media (max-width: 900px){
+      .span-7,.span-5{grid-column: span 12;}
+    }
+    h2{margin:0 0 10px 0; font-size:18px; letter-spacing:-0.2px;}
+    p{margin:0 0 10px 0; color:var(--muted)}
+    .proj{
+      display:flex; flex-direction:column; gap:10px;
+      padding:14px; border-radius:16px;
+      border:1px solid rgba(255,255,255,0.10);
+      background: rgba(11,18,32,0.35);
+    }
+    .proj-top{display:flex; justify-content:space-between; gap:10px; align-items:flex-start;}
+    .tag{
+      font-size:12px; font-weight:900; letter-spacing:0.3px;
+      color:#061019;
+      background: linear-gradient(135deg, var(--accent2), rgba(255,204,102,0.55));
+      padding:6px 10px; border-radius:999px;
+      border: 1px solid rgba(255,255,255,0.08);
+      white-space:nowrap;
+    }
+    .proj h3{margin:0; font-size:16px}
+    .proj ul{margin:0; padding-left:18px; color:var(--muted)}
+    .proj a.link{
+      margin-top:4px; display:inline-flex; gap:8px; align-items:center;
+      font-weight:850; color:var(--text);
+      opacity:0.95;
+    }
+    .proj a.link:hover{color:var(--accent)}
+    .two-col{display:grid; grid-template-columns: 1fr 1fr; gap:12px;}
+    @media (max-width: 700px){ .two-col{grid-template-columns:1fr;} }
+    .footer{
+      margin-top:24px; color: rgba(231,236,255,0.65);
+      text-align:center; font-size:13px;
+    }
+    .line{height:1px; background: var(--stroke); margin:10px 0 14px;}
+    .tiny{font-size:12px; color: rgba(231,236,255,0.70)}
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;}
+    .input{
+      width:100%;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid var(--stroke);
+      background: rgba(11,18,32,0.35);
+      color: var(--text);
+      outline:none;
+    }
+    .input::placeholder{color: rgba(231,236,255,0.45)}
+  </style>
+</head>
+
+<body>
+  <div class="nav">
+    <div class="nav-inner">
+      <div class="brand">
+        <div class="badge">ET</div>
+        <div>
+          <div style="font-size:14px; font-weight:900;">Elias Thompson</div>
+          <div class="tiny">Data Analytics • AI • SQL • Tableau</div>
+        </div>
+      </div>
+
+      <div class="nav-links">
+        <a class="pill" href="#projects">Projects</a>
+        <a class="pill" href="#skills">Skills</a>
+        <a class="pill" href="#coursework">Coursework</a>
+        <a class="pill" href="#links">Links</a>
+        <a class="pill" href="#resume">Resume</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="card">
+        <h1 class="headline">Data Analytics + AI Portfolio</h1>
+        <p class="sub">
+          I’m a Business Analytics student focused on <b>SQL</b>, <b>Excel</b>, <b>Tableau</b>, and <b>AI-assisted analysis</b>.
+          I build clean dashboards, predictive models, and business insights — with a sporty, professional presentation.
+        </p>
+
+        <div class="chips">
+          <span class="chip">SQL (Foundations)</span>
+          <span class="chip">Excel (Finance + Analysis)</span>
+          <span class="chip">Python (Modeling)</span>
+          <span class="chip">Tableau (Dashboards)</span>
+          <span class="chip">GenAI (ChatGPT workflows)</span>
+        </div>
+
+        <div class="cta-row">
+          <a class="btn primary" href="https://www.linkedin.com/in/elias-thompson-22463032b/" target="_blank" rel="noreferrer">
+            ↗ LinkedIn
+          </a>
+          <a class="btn" href="#projects">View Projects</a>
+          <a class="btn" href="#resume">Resume PDF</a>
+        </div>
+
+        <div class="kpis">
+          <div class="kpi">
+            <div class="label">Focus</div>
+            <div class="value">Analytics → Decisions</div>
+          </div>
+          <div class="kpi">
+            <div class="label">Stack</div>
+            <div class="value">SQL • Excel • Tableau</div>
+          </div>
+          <div class="kpi">
+            <div class="label">Bonus</div>
+            <div class="value">AI + Modeling</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Links Card -->
+      <div class="card" id="links">
+        <h2>Quick Links</h2>
+        <p>Drop your project links here so recruiters can click fast.</p>
+        <div class="line"></div>
+
+        <div class="two-col">
+          <div>
+            <div class="tiny">Tableau Dashboard</div>
+            <a class="btn" style="width:100%; justify-content:center;" href="PASTE_TABLEAU_LINK_HERE" target="_blank" rel="noreferrer">↗ Open Tableau</a>
+          </div>
+          <div>
+            <div class="tiny">Adobe Express Report</div>
+            <a class="btn" style="width:100%; justify-content:center;" href="PASTE_ADOBE_EXPRESS_LINK_HERE" target="_blank" rel="noreferrer">↗ Open Adobe Express</a>
+          </div>
+          <div>
+            <div class="tiny">GitHub Repo</div>
+            <a class="btn" style="width:100%; justify-content:center;" href="PASTE_GITHUB_LINK_HERE" target="_blank" rel="noreferrer">↗ Open GitHub</a>
+          </div>
+          <div>
+            <div class="tiny">Email</div>
+            <a class="btn" style="width:100%; justify-content:center;" href="mailto:YOUR_EMAIL_HERE">✉ Email Me</a>
+          </div>
+        </div>
+
+        <div class="line"></div>
+        <div class="tiny">
+          Tip: make sure every link opens in a new tab and your resume is a 1-click download.
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="grid" id="projects">
+      <div class="card span-12">
+        <h2>Featured Projects</h2>
+        <p>These are designed to map to internship requirements like Experian: predictive modeling, data mining, SQL, AI, and strong communication.</p>
+      </div>
+
+      <div class="card span-7">
+        <div class="proj">
+          <div class="proj-top">
+            <h3>1) Credit Default Risk Model</h3>
+            <span class="tag">Regression + Ensemble</span>
+          </div>
+          <p class="tiny mono">Python • Logistic Regression • Random Forest/GBM • AUC</p>
+          <ul>
+            <li>Cleaned credit dataset and engineered risk features (ratios, delinquencies, income buckets).</li>
+            <li>Trained baseline logistic regression + ensemble model and compared performance.</li>
+            <li>Explained business tradeoffs: false positives vs missed risk.</li>
+          </ul>
+          <a class="link" href="PASTE_GITHUB_NOTEBOOK_LINK_1" target="_blank" rel="noreferrer">↗ View notebook / repo</a>
+        </div>
+
+        <div class="proj" style="margin-top:12px;">
+          <div class="proj-top">
+            <h3>2) Customer Segmentation (Data Mining)</h3>
+            <span class="tag">Clustering</span>
+          </div>
+          <p class="tiny mono">Python • K-Means • RFM • Profiling</p>
+          <ul>
+            <li>Built RFM features and segmented customers into actionable groups.</li>
+            <li>Created segment profiles and retention recommendations.</li>
+            <li>Visualized segment differences for a non-technical audience.</li>
+          </ul>
+          <a class="link" href="PASTE_GITHUB_NOTEBOOK_LINK_2" target="_blank" rel="noreferrer">↗ View notebook / repo</a>
+        </div>
+      </div>
+
+      <div class="card span-5">
+        <div class="proj">
+          <div class="proj-top">
+            <h3>3) Fraud Detection Lite</h3>
+            <span class="tag">Neural Net</span>
+          </div>
+          <p class="tiny mono">Python • MLP • Imbalanced Data • PR-AUC</p>
+          <ul>
+            <li>Compared a simple neural network to an ensemble model.</li>
+            <li>Focused on imbalanced evaluation and threshold tuning.</li>
+            <li>Documented “precision vs recall” decision logic.</li>
+          </ul>
+          <a class="link" href="PASTE_GITHUB_NOTEBOOK_LINK_3" target="_blank" rel="noreferrer">↗ View notebook / repo</a>
+        </div>
+
+        <div class="proj" style="margin-top:12px;">
+          <div class="proj-top">
+            <h3>4) SQL Analytics Warehouse</h3>
+            <span class="tag">SQL</span>
+          </div>
+          <p class="tiny mono">SQLite/Postgres • KPIs • Cohorts</p>
+          <ul>
+            <li>Designed tables for customers, transactions, accounts, support tickets.</li>
+            <li>Wrote KPI queries: churn signals, MoM trends, cohorts, top segments.</li>
+            <li>Exported results to Excel/Tableau for dashboards.</li>
+          </ul>
+          <a class="link" href="PASTE_SQL_PROJECT_LINK" target="_blank" rel="noreferrer">↗ View SQL scripts</a>
+        </div>
+      </div>
+
+      <div class="card span-12">
+        <div class="proj">
+          <div class="proj-top">
+            <h3>5) AI Analyst Assistant + Quantum Demo</h3>
+            <span class="tag">GenAI + Quantum</span>
+          </div>
+          <p class="tiny mono">ChatGPT workflow • Exec summaries • Qiskit demo (learning)</p>
+          <ul>
+            <li>Built a simple AI-assisted “executive summary generator” for project results.</li>
+            <li>Created a short quantum notebook demonstrating gates + a toy optimization example.</li>
+            <li>Packaged insights into a clean one-page report format.</li>
+          </ul>
+          <a class="link" href="PASTE_AI_PROJECT_LINK" target="_blank" rel="noreferrer">↗ View AI + quantum work</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="grid" id="skills">
+      <div class="card span-12">
+        <h2>Skills Snapshot</h2>
+        <p>
+          Strong foundation in Excel + SQL, growing predictive modeling skills in Python,
+          plus Tableau dashboards and AI-assisted analysis workflows.
+        </p>
+        <div class="line"></div>
+        <div class="two-col">
+          <div class="proj">
+            <h3>Technical</h3>
+            <ul>
+              <li><b>SQL</b>: SELECT, WHERE, GROUP BY, joins (foundations)</li>
+              <li><b>Excel</b>: pivots, charts, financial functions, analysis workflows</li>
+              <li><b>Python</b>: modeling notebooks, evaluation metrics (AUC, PR-AUC)</li>
+              <li><b>Tableau</b>: dashboards + KPI storytelling</li>
+            </ul>
+          </div>
+          <div class="proj">
+            <h3>AI + Communication</h3>
+            <ul>
+              <li><b>Generative AI</b>: using ChatGPT for summaries, insights, workflow support</li>
+              <li><b>Adobe Express</b>: clean, executive-style visuals</li>
+              <li>Clear written explanations for non-technical audiences</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COURSEWORK -->
+    <section class="grid" id="coursework">
+      <div class="card span-12">
+        <h2>Coursework</h2>
+        <p>Completed and upcoming coursework (easy for recruiters to scan).</p>
+        <div class="line"></div>
+
+        <div class="two-col">
+          <div class="proj">
+            <h3>Completed / In Progress</h3>
+            <ul>
+              <li>Information Management Systems</li>
+              <li>Speaking & Listening in the Digital Age</li>
+              <li>Money & Banking (Excel-based)</li>
+            </ul>
+          </div>
+          <div class="proj">
+            <h3>Upcoming</h3>
+            <ul>
+              <li>Business Finance (BFIN 2201)</li>
+              <li>Principles of Marketing (BMKT 2601)</li>
+              <li>Principles of Management</li>
+              <li>Introduction to Programming (BITM 3721)</li>
+              <li>Business Information Modeling (BITM 3724)</li>
+              <li>Business Intelligence (BITM 3744)</li>
+              <li>Business Applications of Machine Learning</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESUME -->
+    <section class="grid" id="resume">
+      <div class="card span-12">
+        <h2>Resume</h2>
+        <p>Upload your resume as a PDF and link it here.</p>
+        <div class="line"></div>
+        <a class="btn primary" href="PASTE_RESUME_PDF_LINK" target="_blank" rel="noreferrer">⬇ Download Resume (PDF)</a>
+        <div style="margin-top:12px;">
+          <div class="tiny">Optional: add a short “What I’m looking for” line below.</div>
+          <input class="input" type="text" placeholder="Example: Summer 2026 Data Analytics Intern | Remote or Hybrid NYC/NJ" />
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      Built by Elias Thompson • <span class="mono">SQL • Excel • Tableau • Python • AI</span>
+    </div>
+  </div>
+</body>
+</html>
