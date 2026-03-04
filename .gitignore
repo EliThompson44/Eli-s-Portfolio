@@ -1,0 +1,20 @@
+# dependencies
+node_modules/
+.venv/
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+
+# build
+frontend/.next/
+frontend/out/
+backend/.pytest_cache/
+
+# env
+.env
+frontend/.env.local
+backend/.env
+
+# misc
+.DS_Store
+*.log
